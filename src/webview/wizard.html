@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Wizard Form</title>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        h1 {
+            color: #007acc;
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007acc;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f99;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Kendo Project Wizard!</h1>
+    <form id="wizardForm">
+        <label for="createProject">Create Kendo Project: </label>
+        <label for="projectName">Project Name: </label>
+        <input type="text" id="projectName" name="projectName" required><br>
+
+        <label for="projectType">Project Type: </label>
+        <select id="projectType" name="projectType">
+            <option value="Kendo Angular">Kendo Angular</option>
+            <option value="Kendo JQuery">Kendo JQuery</option>
+            <option value="Kendo React">Kendo React</option>
+            <option value="Kendo Vue">Kendo Vue
+            </option>
+        </select><br>
+
+        <button type="button" id="submitBtn">Create Project</button>
+    </form>
+
+    <script>
+        const vscode = acquireVsCodeApi();
+        const form = document.getElementById('wizardForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        submitBtn.addEventListener('click', () => {
+            // Get user input from the form
+            const projectName = document.getElementById('projectName').value;
+            const projectType = document.getElementById('projectType').value;
+
+            // Send the user input back to the extension
+            vscode.postMessage({ command: 'createProject', projectName, projectType });
+        }); 
+    </script>
+</body>
+
+</html>
