@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 			if (message.command === 'createProject') {
 				const { projectName, projectType } = message;
 
-				vscode.window.showInformationMessage(message);
+				vscode.window.showInformationMessage(`Create ${projectName}, ${projectType}`);
 			}
 			});
 		}
